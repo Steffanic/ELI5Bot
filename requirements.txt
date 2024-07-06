@@ -47,11 +47,9 @@ llama-index-legacy
 llama-index-llms-gradient
 llama-index-llms-mistralai
 llama-index-llms-ollama
-llama-index-llms-openai
 llama-index-llms-replicate
 llama-index-multi-modal-llms-openai
 llama-index-postprocessor-cohere-rerank
-llama-index-program-openai
 llama-index-question-gen-openai
 llama-index-readers-file
 llama-index-readers-llama-parse
@@ -81,7 +79,6 @@ nvidia-cusparse-cu12
 nvidia-nccl-cu12
 nvidia-nvjitlink-cu12
 nvidia-nvtx-cu12
-openai
 orjson
 packaging
 pandas
@@ -97,7 +94,6 @@ pydantic_core
 pypdf
 pyspark
 pytest
-python-dateutilpost0
 python-dotenv
 pytz
 PyYAML

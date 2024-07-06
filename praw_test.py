@@ -52,7 +52,7 @@ for submission in ELI5Submissions:
             continue
         print(submission.title)
         print(submission.selftext)
-        question =  submission.title
+        question =  submission.title + submission.selftext.replace("\n", " ")
         answer = responder.chat(question)
         print(answer)
         evaluation = evaluator.chat(f"Question: {question} Answer: {answer}")

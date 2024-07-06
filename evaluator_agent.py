@@ -19,8 +19,8 @@ from llama_index.core import Settings
 from llama_index.readers.wikipedia import WikipediaReader
 
 
-dotenv.load_dotenv()
-OLLAMA_MODEL='mistral'
+dotenv.load_dotenv("./.env")
+OLLAMA_MODEL=os.getenv("OLLAMA_MODEL")
 OLLAMA_TIMEOUT=3000.00
 OLLAMA_TEMP=0.0
 OLLAMA_BASE_URL=os.getenv("OLLAMA_BASE_URL")
