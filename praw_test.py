@@ -22,7 +22,7 @@ logger.setLevel(logging.INFO)
 
 client_secret = os.getenv("REDDIT_CLIENT_SECRET")
 client_id = os.getenv("REDDIT_CLIENT_ID")
-user_name = os.getenv("REDDIT_USER_NAME")
+user_name = os.getenv("REDDIT_USERNAME")
 password = os.getenv("REDDIT_PASSWORD")
 code = os.getenv("REDDIT_CODE")
 reddit = praw.Reddit(
@@ -33,9 +33,8 @@ reddit = praw.Reddit(
     user_agent="An LLM that responds to ELI5 posts",
     redirect_uri="http://localhost:8999",
 )
-reddit.auth.authorize(code=code)
 
-print(reddit.user.me)
+print(reddit.user.me())
 
 
 ELI5Submissions = reddit.subreddit("explainlikeimfive").hot(limit=5)
@@ -59,6 +58,9 @@ for submission in ELI5Submissions:
         question =  submission.title + submission.selftext.replace("\n", " ")
         answer = responder.chat(question)
         print(answer)
+        # reply to the submission
+        comment = submission.reply(answer)
         evaluation = evaluator.chat(f"Question: {question} Answer: {answer}")
         print(evaluation)
-        break
+        # reply to the comment
+        comment.reply(evaluation)
