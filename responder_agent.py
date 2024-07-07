@@ -43,7 +43,6 @@ def generate_answers(input: str = Field(description="A question posted in the r/
     Question: ELI5: How did American soldiers use napalm without harming themselves? I know napalm usage was quite common in wartime between WW2 and Vietnam, and I'm also very aware of just how damaging the substance was to the people affected. Internal damage, skin essentially melting, burning underwater (cue Phil Swift), etc. My question is, how were soldiers able to, for lack of a better word, safely use napalm without harming themselves as well as their targets?
     Answer 1: 
     You ever see one of those little cans with the pink gel in them that you light to keep a serving tray warm?
-
     Thats napalm and its fairly harmless until given oxygen and heated above its ingition point.
     Answer 2:
     Napalm was powerful but I think the main culprit of chemicals they were exposed to that left lasting health damage was Agent Orange. My grandfather had a grapefruit sized tumor in his lung when he died on the operating table from the surgeon accidently cutting an artery. That wasn't his only health problem, either. He started to hunch over with arthritis in his neck and spine to the point it affected his height, and it didn't look like normal aging stuff anyway. He was maybe in his 50s but his health was like 20-30 years older seeming. I don't know more details because he died before I was born but his health spiraled from exposure to that stuff.
@@ -107,12 +106,12 @@ def build_agent():
             description="Generates responses to a question.",
         )
         ),
-        # FunctionTool(
-        #     retrieve_wikipedia, ToolMetadata(
-        #         name="retrieve_wikipedia",
-        #         description="Retrieves a summary of the top 5 wikipedia pages for a given input. only use if you cannot answer the question using the other tools",
-        #     )
-        # )
+        FunctionTool(
+            retrieve_wikipedia, ToolMetadata(
+                name="retrieve_wikipedia",
+                description="Retrieves a summary of the top 5 wikipedia pages for a given input. only use if you cannot answer the question using the other tools",
+            )
+        )
     ]
 
     agent = ReActAgent.from_tools(tools, llm=llm, context="""You are to craft a clear concise and factual answer to a question posted in the r/explainitlikeimfive subreddit. Example: Question: ELI5: How did American soldiers use napalm without harming themselves?  Answer: The soldiers used napalm by dropping it from planes. They would fly low to the ground and drop the napalm as close as possible to the frontline. The pilots were well trained and determined to save their comrades.""", max_iterations=100)

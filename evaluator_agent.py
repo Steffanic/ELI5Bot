@@ -48,11 +48,6 @@ def build_agent():
         description="Evaluate the quality of the answer given the question on a scale of 1-10 and explain your reasoning.",)
     )
 
-    agent = ReActAgent.from_tools([tool], llm=llm, context="""You are approving or denying this answer to the question. You can use the evaluator tool to get a numerical score and explanation for the quality of the answer given the question. Use that information to approve or deny the comment.
-        Example:
-        Question: What is the meaning of life?
-        Answer: The meaning of life is to be happy.
-        Evaluation: 3 - Approve - The answer is too vague and does not provide a clear explanation. Provide a more detailed response.""", max_iterations=100)
+    agent = ReActAgent.from_tools([tool], llm=llm, context="""Respond to the question, answer, and evaluation in typical reddit comment fashion.""", max_iterations=100)
 
     return agent
-
