@@ -66,7 +66,7 @@ This project leverages the amazing tools that are coming out in the large langua
 
 ### Usage
 
-Running eli5_llm_agent.py will retrieve the 25 most recent "hot" posts on r/explainitlikeimfive and post a comment in response if it has yet to respond. The agent has access to a tool that can draft several answers that are then summarized in a final answer.
+Running eli5_llm_agent.py will retrieve the 25 most recent "hot" posts on r/explainitlikeimfive and post a comment in response if it has yet to respond. The agent has access to a tool that can draft several answers that are then summarized in a final answer. Includes basic rate limiting, tbh my CPU is doing most of the work here. 😁
 
 ### The Future 
     
