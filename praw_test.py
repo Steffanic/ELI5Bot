@@ -38,7 +38,7 @@ reddit = praw.Reddit(
 )
 
 print(reddit.user.me())
-user_comments = reddit.user.me().comments.new(limit=10)
+user_comments = list(reddit.user.me().comments.new(limit=10))
 
 ELI5Submissions = reddit.subreddit("explainlikeimfive").hot(limit=5)
 
