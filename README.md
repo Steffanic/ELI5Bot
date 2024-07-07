@@ -5,6 +5,8 @@ This project leverages the amazing tools that are coming out in the large langua
  - I use PRAW to read posts and comment the agent's response
  - I use LlamaIndex and Ollama to power the LLM agent (surprisingly easy!)
 
+ Check out the [notebook](ELI5LLM.ipynb) to get started right away! I recommend opening it up in colab, there is a link when you open the notebook in github. I cannot guarantee that the dependencies pre-loaded in colab are present in my requirements.txt file.
+
 ## Installation
 
 ### Prerequisites
