@@ -41,7 +41,7 @@ reddit = praw.Reddit(
 print(reddit.user.me())
 user_comments = list(reddit.user.me().comments.new(limit=50))
 
-ELI5Submissions = reddit.subreddit("explainlikeimfive").hot(limit=25)
+ELI5Submissions = reddit.subreddit("explainlikeimfive").new(limit=25)
 
 print("ELI5 Subreddit Comments")
 
@@ -71,7 +71,7 @@ for submission in ELI5Submissions:
             if type(e) == praw.exceptions.RedditAPIException:
                 print(e)
                 # find the number of minutes to wait
-                minutes = re.search(r"\d+", e).group()
+                minutes = re.search(r"\d+", str(e)).group()
                 # sleep for that many minutes
                 time.sleep(int(minutes)*60)
         # sleep for one minute to avoid rate limiting
