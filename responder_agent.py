@@ -106,12 +106,12 @@ def build_agent():
             description="Generates responses to a question.",
         )
         ),
-        FunctionTool(
-            retrieve_wikipedia, ToolMetadata(
-                name="retrieve_wikipedia",
-                description="Retrieves a summary of the top 5 wikipedia pages for a given input. only use if you cannot answer the question using the other tools",
-            )
-        )
+        # FunctionTool(
+        #     retrieve_wikipedia, ToolMetadata(
+        #         name="retrieve_wikipedia",
+        #         description="Retrieves a summary of the top 5 wikipedia pages for a given input. only use if you cannot answer the question using the other tools",
+        #     )
+        # )
     ]
 
     agent = ReActAgent.from_tools(tools, llm=llm, context="""You are to craft a clear concise and factual answer to a question posted in the r/explainitlikeimfive subreddit. Example: Question: ELI5: How did American soldiers use napalm without harming themselves?  Answer: The soldiers used napalm by dropping it from planes. They would fly low to the ground and drop the napalm as close as possible to the frontline. The pilots were well trained and determined to save their comrades.""", max_iterations=100)
