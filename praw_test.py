@@ -24,6 +24,7 @@ client_secret = os.getenv("REDDIT_CLIENT_SECRET")
 client_id = os.getenv("REDDIT_CLIENT_ID")
 user_name = os.getenv("REDDIT_USER_NAME")
 password = os.getenv("REDDIT_PASSWORD")
+code = os.getenv("REDDIT_CODE")
 reddit = praw.Reddit(
     username=user_name,
     password=password,
@@ -32,6 +33,9 @@ reddit = praw.Reddit(
     user_agent="An LLM that responds to ELI5 posts",
     redirect_uri="http://localhost:8999",
 )
+reddit.auth.authorize(code=code)
+
+print(reddit.user.me)
 
 
 ELI5Submissions = reddit.subreddit("explainlikeimfive").hot(limit=5)
