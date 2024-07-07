@@ -16,7 +16,7 @@ from evaluator_agent import build_agent as evaluator_agent
 
 dotenv.load_dotenv()
 
-fileHandler = logging.FileHandler("praw_test.log")
+fileHandler = logging.FileHandler("eli5_llm_agent.log")
 logger = logging.getLogger()
 logger.addHandler(fileHandler)
 logger.setLevel(logging.INFO)
@@ -39,9 +39,9 @@ reddit = praw.Reddit(
 )
 
 print(reddit.user.me())
-user_comments = list(reddit.user.me().comments.new(limit=10))
+user_comments = list(reddit.user.me().comments.new(limit=50))
 
-ELI5Submissions = reddit.subreddit("explainlikeimfive").hot(limit=5)
+ELI5Submissions = reddit.subreddit("explainlikeimfive").hot(limit=25)
 
 print("ELI5 Subreddit Comments")
 
@@ -50,13 +50,9 @@ print("ELI5 Subreddit Comments")
 # and then pass it to the agent
 
 responder = responder_agent()
-evaluator = evaluator_agent()
-skip=False
+# evaluator = evaluator_agent()
 for submission in ELI5Submissions:
     if not submission.stickied:
-        if skip:
-            skip = False
-            continue
         if submission.id in [c.parent_id[3:] for c in user_comments]:
             # skip posts that we have already commented on
             print(f"{submission.title}. Already commented, skipping")
